@@ -22,6 +22,22 @@ jobs:
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.1'
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run StandardRB
+        run: bundle exec standardrb
+
   # scan_js:
   #   runs-on: ubuntu-latest
 
